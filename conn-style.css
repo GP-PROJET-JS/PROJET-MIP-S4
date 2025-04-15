@@ -8,6 +8,7 @@ header {
     position: relative;
     /* align-items: center; */
     padding: 15px;
+    z-index: 1001;
     /* height: 15vh; */
     text-align: center;
     background-color: rgb(128, 143, 153);
@@ -19,21 +20,33 @@ header {
   } */
 
 header h1 {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     color: rgb(30, 108, 210);
     font-style:oblique;
     letter-spacing: 3px;
+    z-index: inherit;
     font-family: Arial, sans-serif;
   }
 /* Navigation barre */
+#sticky-barre {
+  background-color: rgb(128, 143, 153);
+  height: 53px;
+  position: fixed; /* or sticky */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
 .burger {
   position: fixed;
+  top: 10px;
+  left: 10px;
   width: 40px;
   height: 30px;
   background: transparent;
   cursor: pointer;
   display: block;
-  z-index: 1001;
+  z-index: 1002;
   }
 
 .burger input {
@@ -308,3 +321,9 @@ main{
   }
 /* end form connection */
 /* end main */
+/* footer */
+footer{
+  height: 30vh;
+  background-color:#b8b8b8;
+  }
+/* end footer */
