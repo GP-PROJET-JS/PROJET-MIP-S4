@@ -1,4 +1,16 @@
+// menu barre
+const checkbox = document.querySelector("#menu-check")
+const menu = document.querySelector(".menu")
 
+checkbox.addEventListener("change", () => {
+  if (checkbox.checked) {
+    menu.classList.add("visible")
+  } else {
+    menu.classList.remove("visible")
+  }
+})
+
+// etudiant + enseignant
 const Etudiant = document.querySelector(".Etudiant")
 const Enseignant = document.querySelector(".Enseignant")
 Etudiant.onclick = function () {
