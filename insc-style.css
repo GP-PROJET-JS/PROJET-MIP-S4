@@ -45,12 +45,11 @@ header h1 {
 .burger span {
     display: block;
     position: absolute;
+    left: 0;
     height: 4px;
     width: 100%;
     background: rgb(54, 54, 54);
     border-radius: 9px;
-    opacity: 1;
-    left: 0;
     transform: rotate(0deg);
     transition: .25s ease-in-out;
   }
@@ -90,7 +89,8 @@ header h1 {
   left: 0;
   width: 220px;
   height: 100vh;
-  background-color: #9f9f9f;
+  /* background-color: #9f9f9f; */
+  background-color: #eee;
   color: white;
   padding: 40px 20px;
   display: none;
@@ -109,6 +109,20 @@ header h1 {
 .visible {
   display: block;
 }
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: none;
+}
+#overlay.active {
+  display: block;
+}
+/* end menu */
 /* end header */
 /* main */
 main {

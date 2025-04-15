@@ -5,9 +5,18 @@ const menu = document.querySelector(".menu")
 checkbox.addEventListener("change", () => {
   if (checkbox.checked) {
     menu.classList.add("visible")
+    overlay.classList.toggle("active")
   } else {
     menu.classList.remove("visible")
+    overlay.classList.remove("active")
   }
+})
+
+const overlay = document.querySelector("#overlay")
+overlay.addEventListener("click", () => {
+  menu.classList.remove("visible")
+  overlay.classList.remove("active")
+  checkbox.checked = false
 })
 
 // etudiant + enseignant
