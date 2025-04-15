@@ -20,7 +20,7 @@ et aux étudiants de s’inscrire et de les passer à distance.
 
 ## 📈 Avancement
 - [x] Création de l’organisation et du dépôt GitHub
-- [ ] Formulaire d’inscription
+- [x] Formulaire d’inscription
 - [ ] Formulaire de connexion
 - [ ] Interface enseignant : création examen
 - [ ] Interface enseignant : ajout questions
