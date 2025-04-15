@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     padding: 0;
@@ -16,31 +15,28 @@ header {
 /* header img { 
     width: 100px;
     height: 100px;
-    position: absolute;
-    left: 10px;
-    margin-right: auto;
   } */
 
 header h1 {
-    flex-grow: 1; 
+    flex-grow: 1;
     color: rgb(30, 108, 210);
-    font-style: oblique;
+    font-style:oblique;
     letter-spacing: 3px;
     font-family: Arial, sans-serif;
   }
 
-main {
+main{
     height: 100vh;
     /* display: flex; */
-    justify-content: center; 
-    align-items: center;   
+    /* justify-content: center; */
+    /* align-items: center;  */
     text-align: center;
     background-color: #f5f5f5;
     font-family: Arial, sans-serif;
   }
 
-/* debut form inscpt Etudiat */
-.form-inscpt {
+/* debut form connect Etudiant */
+.form-con {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -50,12 +46,12 @@ main {
     border-radius: 20px;
     position: relative;
     /* position: absolute; */
-    top: 50%;
+    top: 34%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 0px 10px rgba(51, 49, 49, 0.927);
   }
-  
+
 .Etudiant, .Enseignant {
     font-size: 28px;
     color: royalblue;
@@ -72,10 +68,10 @@ main {
     /* background-color:darkgray; */
   }
   
-.Enseignant {
+.Enseignant{
     color: brown;
   }
-.flex0 {
+.flex0{
     display: flex;
     gap: 80px;
   }
@@ -100,8 +96,8 @@ main {
     animation: pulse 1s linear infinite;
   }
 /* end Etudiant cercle 1 */
-/* Enseignant cercle 2 */
-  .Enseignant::before,.Enseignant_activer::after { /* edit "Enseignemant" to be active*/
+/* Etudiant cercle 2 */
+  .Enseignant::before,.Enseignant_activer::after {
     position: absolute;
     content: " ";
     height: 18px;
@@ -120,23 +116,23 @@ main {
     height: 20px;
     animation: pulse 1s linear infinite;
   }
-/* end Enseignant cercle 2 */
+/* end Etudiant cercle 2 */
 
-.message {
+.message{
     color: rgba(88, 87, 87, 0.822);
     font-size: 17px;
     text-align: left;
   }
   
-.conect {
+.inscrir {
     color: rgba(88, 87, 87, 0.822);
     font-size: 14px;
     text-align: center;
   }
-.conect a {
+.inscrir a {
     color: royalblue;
   }
-.conect a:hover {
+.inscrir a:hover {
     color: rgb(47, 81, 168) ;
     text-decoration: underline rgb(47, 81, 168);
   }
@@ -145,15 +141,15 @@ main {
     display: flex;
     gap: 20px;
   }
-.flex1 label {
+.flex1 label{
     width: 47%;
   }
 
-.form-inscpt label {
+.form-con label {
     position: relative;
   }
   
-.form-inscpt label .input {
+.form-con label .input {
     width: 98%;
     padding: 10px 0px 20px 10px;
     outline: 0;
@@ -162,7 +158,7 @@ main {
   }
 
 /* .input + span */
-  .form-inscpt label .input + span {
+  .form-con label .input + span {
     position: absolute;
     left: 10px;
     top: 15px;
@@ -171,22 +167,23 @@ main {
     cursor: text;
     transition: 0.3s ease;
   }
-  .form-inscpt label .input:placeholder-shown + span {
+  .form-con label .input:placeholder-shown + span {
     top: 15px;
     font-size: 0.9em;
   }
-  .form-inscpt label .input:focus + span,.form-inscpt label .input:valid + span {
+  .form-con label .input:focus + span,.form-con label .input:valid + span {
     top: 30px;
     font-size: 0.7em;
     font-weight: 600;
   }
-  .form-inscpt label .input:valid + span {
+  .form-con label .input:valid + span {
     color: green;
   }
 /* end .input + span */
 /* submit bouton */
 .submit {
     border: none;
+    /* outline: none; */
     background-color: royalblue;
     /* background-color: brown; */
     padding: 10px;
@@ -198,7 +195,7 @@ main {
   }
 .submit:hover {
     background-color: rgb(56, 90, 194);
-    /* background-color: rgb(125, 32, 32); */ 
+    /* background-color: rgb(125, 32, 32); */  
   }
   
 @keyframes pulse {
@@ -212,5 +209,5 @@ main {
       opacity: 0;
     }
   }
-/* end form inscpt Etudiant */
+/* end form connection */
 
