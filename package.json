@@ -1,0 +1,26 @@
+{
+  "name": "projet-mip-s4",
+  "version": "1.0.0",
+  "description": "Application web permettant aux enseignants de créer et gérer des examens en ligne, \r et aux étudiants de s’inscrire et de les passer à distance.",
+  "main": "conn-script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GP-PROJET-JS/PROJET-MIP-S4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GP-PROJET-JS/PROJET-MIP-S4/issues"
+  },
+  "homepage": "https://github.com/GP-PROJET-JS/PROJET-MIP-S4#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.0"
+  }
+}

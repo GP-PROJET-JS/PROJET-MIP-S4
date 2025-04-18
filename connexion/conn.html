@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>plateforme-examen</title>
+    <link rel="stylesheet" href="conn-style.css">
+    
+</head>
+<body>
+    <header>
+        <!-- navigatione barre -->
+        <nav>
+            <label class="burger" for="menu-check">
+                <input type="checkbox" id="menu-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <aside class="menu" >
+                <ul>
+                  <li class="inscrir" style="font-size: larger;"><a href="../inscription/index.html">S'inscrire</a></li>
+                </ul>
+            </aside>
+            <div id="overlay"></div>
+        </nav>
+        <!-- end navigation barre -->
+        <h1>Bienvenu Dans PlatExm</h1>
+    </header>
+    <div id="sticky-barre"></div>
+    <main>
+        <!-- debut From connexion --> 
+        <form class="form-con" method="post" onsubmit="return seConnecter(event)" >
+            <div class="flex0">
+                <samp class="Etudiant Etudiant_activer">Etudiant</samp>
+                <samp class="Enseignant ">Enseignant</samp> <!-- add Enseignant_activer for activer Enseignement -->
+            </div>
+            <p class="message"> Se Connecter Comme Etudiant : </p>
+            <label>
+                <input type="email" name="email" class="input" required placeholder="" >
+                <span>Email</span>
+            </label>
+            
+            <label>
+                <input type="password" name="mdp" class="input" required="" placeholder="" >
+                <span>Mot de Pass</span>
+            </label>
+            <div id="error-message"></div>
+            <input id="type" type="hidden" name="usertype" value="etudiant">
+            
+            <button class="submit">Se Conecter</button>
+            <p class="inscrir">Vous n'avez pas un compte ? <a href="../inscription/index.html">S'inscrire</a> </p> 
+        </form> 
+        <!-- end form connexion -->
+         
+    </main>
+    <footer>
+
+    </footer>
+</body>
+    <script src="conn-script.js"></script>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>plateforme-examen</title>
+    <link rel="stylesheet" href="insc-style.css">
+</head>
+<body>
+    <header>
+        <!-- navigatione barre -->
+        <nav>
+            <label class="burger" for="menu-check">
+                <input type="checkbox" id="menu-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <aside class="menu" >
+                <ul>
+                  <li class="conect" style="font-size: larger;"><a href="../connexion/conn.html">Se connecter</a></li>
+                </ul>
+            </aside>
+            <div id="overlay"></div>
+        </nav>
+        <!-- end navigation barre -->
+        <div id="up"></div>
+        <h1>Bienvenu Dans PlatExm</h1>
+    </header>
+    <div id="sticky-barre"></div>
+    <main>
+        <div id="success-message" style="text-align:center; font-weight:bold;"></div>
+        <!-- debut From inscription --> 
+        <form class="form-inscpt" method="post" onsubmit="return validerFormulaire(event)" >
+            <div class="flex0">
+                <samp class="Etudiant Etudiant_activer">Etudiant</samp>
+                <samp class="Enseignant ">Enseignant</samp> <!-- add Enseignant_activer for activer Enseignement -->
+            </div>
+            <p class="message"> S'inscrire Comme Etudiant : </p>
+            <div class="flex1">
+                <label>
+                    <input type="text" name="nom" class="input" required placeholder=""  >
+                    <span>Nom</span>
+                </label>
+                <label>
+                    <input type="text" name="prenom" class="input" required placeholder="" >
+                    <span>Prenom</span>
+                </label>
+            </div> 
+
+            <label>
+                <input type="email" name="email" class="input" required placeholder="" >
+                <span>Email</span>
+            </label>  
+
+            <div class="flex1">
+                <label style="width:25%" >
+                    <select name="sexe" class="input" required >
+                        <option value="Selectioner" disabled selected>Selectioner</option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                    </select>
+                    <span id="error-sexe">Sexe</span> 
+                </label>
+                <label>
+                    <input type="date" name="date_naissance" class="input" style="text-align: right; width:140%; padding-right:10px" required>
+                    <span id="error-naissance" >Date de naissance</span>
+                </label>
+            </div>
+
+            <label>
+                <input type="text" name="etb" class="input" required>
+                <span>Etablissement</span> 
+            </label>
+            
+            <label>
+                <input type="text" name="filiere" class="input" required>
+                <span>Filiere</span>
+            </label>
+
+            <label>
+                <input type="password" name="mdp" class="input" required placeholder="" >
+                <span>Mot de Pass</span>
+            </label>
+
+            <label>
+                <input type="password" name="confirm_mdp" class="input" required placeholder="" >
+                <span id="error-mdp" >Confirmer Mot de Pass</span>
+            </label>
+
+            <input id="type" type="hidden" name="usertype" value="etudiant">
+            
+            <button class="submit">Crier Compte</button>
+            <p class="conect">Vous avez deja un compte ? <a href="../connexion/conn.html">Se connecter</a> </p>
+        </form>
+        <!-- end form inscription  -->
+        
+    </main>
+    <footer>
+
+    </footer>
+</body>
+    <script src="insc-script.js"></script>
+</html>

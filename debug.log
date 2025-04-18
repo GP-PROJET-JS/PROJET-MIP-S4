@@ -1,0 +1,49 @@
+// info d'utilisateur pour des test
+        Nouvel utilisateur inscrit :
+        Nom : Benhaqy
+        Email : adil@gmail.com
+        Mot de passe (clair) : adil1234
+        Mot de passe (haché) : $2b$10$y5sIR7sBLVyt.IkSLQQJOuezAiANz1iHvO9AB2t90ZJVVL3vN.N72
+        Type d'utilisateur : etudiant
+        Date : 17/04/2025 23:28:02
+        ----------------------------
+        Nouvel utilisateur inscrit :
+        Nom : Enaanai
+        Email : enaanai@gmail.com
+        Mot de passe (clair) : enaanai1234
+        Mot de passe (haché) : $2b$10$dGCIbr0nQPQysQZGCceQTunqL1804ztUVBfdsxn5VXpVs0VNM0Xdu
+        Type d'utilisateur : enseignant
+        Date : 17/04/2025 23:29:37
+        ----------------------------
+        Nouvel utilisateur inscrit :
+        Nom : El alami
+        Email : imadalalami33@gmail.com
+        Mot de passe (clair) : imad1234
+        Mot de passe (haché) : $2b$10$zJEVR.oF2bQn.C8GanoyAuvPGpPDzVVAOVaKWsObRg74UGEz2iO5u
+        Type d'utilisateur : etudiant
+        Date : 18/04/2025 19:43:00
+        ----------------------------
+        Nouvel utilisateur inscrit :
+        Nom : El khatabi
+        Email : zaynab@gmail.com
+        Mot de passe (clair) : zaynab1234
+        Mot de passe (haché) : $2b$10$JcBkgDmEand76vXAvwo9.e84t3Sz.T9JgZm7/HoylVAbj2DeAm1ae
+        Type d'utilisateur : enseignant
+        Date : 18/04/2025 19:44:45
+        ----------------------------
+        Nouvel utilisateur inscrit :
+        Nom : El bakhti
+        Email : ayman@gmail.com
+        Mot de passe (clair) : ayman1234
+        Mot de passe (haché) : $2b$10$9Rz2f4keOz701rNGMw.rteDSAliBGlAX.gl2ILj7am6tOJsMid37a
+        Type d'utilisateur : etudiant
+        Date : 18/04/2025 20:01:57
+        ----------------------------
+        Nouvel utilisateur inscrit :
+        Nom : El bali
+        Email : hatim@gmail.com
+        Mot de passe (clair) : lufybara
+        Mot de passe (haché) : $2b$10$APvpYQQmMa8CMibWNG6Rwu0ELsY85qNab//Hda0OkBZFhxgHoVqAS
+        Type d'utilisateur : etudiant
+        Date : 18/04/2025 20:07:17
+        ----------------------------
