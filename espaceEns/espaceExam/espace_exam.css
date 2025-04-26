@@ -1,0 +1,38 @@
+body { 
+    font-family: Arial; 
+    padding: 2rem; 
+    background: #f8f8f8; 
+}
+form, #question-section { 
+    background: white; 
+    padding: 2rem; 
+    max-width: 500px; 
+    margin: auto; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+    margin-bottom: 2rem; 
+}
+input, select, button { 
+    padding: 0.8rem; 
+    font-size: 1rem; 
+    width: 100%; 
+    margin-bottom: 1rem; 
+}
+.question-toggle { 
+    display: flex; 
+    gap: 1rem; 
+    margin-bottom: 1rem; 
+}
+.question-toggle button { 
+    flex: 1; 
+    padding: 1rem; 
+    cursor: pointer; 
+}
+.question-form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+}
+.form-footer { 
+    display: flex; 
+    justify-content: space-between; 
+}

@@ -1,49 +1,33 @@
 // info d'utilisateur pour des test
         Nouvel utilisateur inscrit :
+        Nom : Enaanai
+        Email : enaanai@gmail.com
+        Mot de passe (clair) : enaanai1234
+        Mot de passe (haché) : $2b$10$tXTyY.R2QL4ADieCBUWPEemnNNwISokCqtK7kw1.u8IBb3gxKdKna
+        Type d'utilisateur : enseignant
+        Date : 24/04/2025 18:44:21
+        ----------------------------
+        Nouvel utilisateur inscrit :
+        Nom : El alami
+        Email : imad@gmail.com
+        Mot de passe (clair) : imad1234
+        Mot de passe (haché) : $2b$10$AoZbvciwn761QBEk73216O1EtGfLRANyYqCXG3E4LRuW7jtAWIBCu
+        Type d'utilisateur : enseignant
+        Date : 24/04/2025 23:58:19
+        ----------------------------
+        Nouvel utilisateur inscrit :
         Nom : Benhaqy
         Email : adil@gmail.com
         Mot de passe (clair) : adil1234
-        Mot de passe (haché) : $2b$10$y5sIR7sBLVyt.IkSLQQJOuezAiANz1iHvO9AB2t90ZJVVL3vN.N72
+        Mot de passe (haché) : $2b$10$01jEzn/bvEWrxddhfaIe6u..7s18D/G6DGtmq3YocbBUu5qS5foYu
         Type d'utilisateur : etudiant
-        Date : 17/04/2025 23:28:02
+        Date : 25/04/2025 00:58:11
         ----------------------------
         Nouvel utilisateur inscrit :
         Nom : Enaanai
         Email : enaanai@gmail.com
         Mot de passe (clair) : enaanai1234
-        Mot de passe (haché) : $2b$10$dGCIbr0nQPQysQZGCceQTunqL1804ztUVBfdsxn5VXpVs0VNM0Xdu
+        Mot de passe (haché) : $2b$10$gN8FIvx96d6jSK6m67tkIeon5B7ki3VKj4eH72gRMvosJylo8oyQ.
         Type d'utilisateur : enseignant
-        Date : 17/04/2025 23:29:37
-        ----------------------------
-        Nouvel utilisateur inscrit :
-        Nom : El alami
-        Email : imadalalami33@gmail.com
-        Mot de passe (clair) : imad1234
-        Mot de passe (haché) : $2b$10$zJEVR.oF2bQn.C8GanoyAuvPGpPDzVVAOVaKWsObRg74UGEz2iO5u
-        Type d'utilisateur : etudiant
-        Date : 18/04/2025 19:43:00
-        ----------------------------
-        Nouvel utilisateur inscrit :
-        Nom : El khatabi
-        Email : zaynab@gmail.com
-        Mot de passe (clair) : zaynab1234
-        Mot de passe (haché) : $2b$10$JcBkgDmEand76vXAvwo9.e84t3Sz.T9JgZm7/HoylVAbj2DeAm1ae
-        Type d'utilisateur : enseignant
-        Date : 18/04/2025 19:44:45
-        ----------------------------
-        Nouvel utilisateur inscrit :
-        Nom : El bakhti
-        Email : ayman@gmail.com
-        Mot de passe (clair) : ayman1234
-        Mot de passe (haché) : $2b$10$9Rz2f4keOz701rNGMw.rteDSAliBGlAX.gl2ILj7am6tOJsMid37a
-        Type d'utilisateur : etudiant
-        Date : 18/04/2025 20:01:57
-        ----------------------------
-        Nouvel utilisateur inscrit :
-        Nom : El bali
-        Email : hatim@gmail.com
-        Mot de passe (clair) : lufybara
-        Mot de passe (haché) : $2b$10$APvpYQQmMa8CMibWNG6Rwu0ELsY85qNab//Hda0OkBZFhxgHoVqAS
-        Type d'utilisateur : etudiant
-        Date : 18/04/2025 20:07:17
+        Date : 25/04/2025 19:38:43
         ----------------------------

@@ -60,10 +60,6 @@ router.post('/connexion', (req, res) => {
   const db = req.app.get('db')
   const { email, mdp, usertype } = req.body;
   const table = (usertype === 'enseignant') ? 'enseignant' : 'etudiant'
-  
-  // console.log("Email reçu:", email)
-  // console.log("Mot de passe reçu:", mdp)
-  // console.log("Type utilisateur reçu:", usertype)
 
   const sql = `SELECT * FROM ${table} WHERE email = ?`
   db.query(sql, [email], async (err, results) => {
@@ -79,9 +75,15 @@ router.post('/connexion', (req, res) => {
       SECRET_KEY,
       { expiresIn: '2h' }
     )
+    console.log("Email reçu:", email)
+    console.log("Mot de passe reçu:", mdp)
+    console.log("Type utilisateur reçu:", usertype)
+    console.log("Id utilisateur reçu:", user.id)
+    console.log("---------------------------")
+
     // Renvoyer token et type utilisateur
-    res.json({ token, usertype })
+    res.json({ token, usertype, id: user.id, email: user.email })
   })
 
-});
+})
 module.exports = router;

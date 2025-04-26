@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>plateforme-examen</title>
+  <link rel="stylesheet" href="espace_exam.css" />
+</head>
+<body>
+  <!-- <form id="exam-form">
+    <input type="text" id="subject" placeholder="Nom de la matière" required />
+    <select id="major" required>
+      <option value="">Choisir la filière</option>
+      <option value="S1">S1</option>
+      <option value="S2">S2</option>
+      <option value="S3">S3</option>
+      <option value="S4">S4</option>
+      <option value="S5">S5</option>
+      <option value="S6">S6</option>
+    </select>
+    <input type="text" id="exam-name" placeholder="Nom de l'examen" required />
+    <button type="submit">Completé</button>
+  </form> -->
+  <main>
+    <div id="question-section" class="hidden">
+      <div class="question-toggle">
+        <button id="qcm-btn" class="active">QCM</button>
+        <button id="rep-btn">Questions Repenser</button>
+      </div>
+      <div id="qcm-form" class="question-form">
+        <input type="text" id="qcm-question" placeholder="Entrer la question QCM">
+        <div id="qcm-answers"></div>
+        <button type="button" id="add-qcm-answer">+</button>
+      </div>
+      <div id="rep-form" class="question-form hidden">
+        <input type="text" id="rep-question" placeholder="Entrer la question">
+        <input type="text" id="rep-answer" placeholder="Entrer la réponse">
+      </div>
+      <div class="form-footer">
+        <button id="add-question">Ajouter Question</button>
+        <button id="finish">Terminé</button>
+      </div>
+    </div>
+  </main>
+</body>
+  <script src="espace_exam.js"></script>
+</html>

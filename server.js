@@ -21,12 +21,24 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'inscription/index.html'))
 })
 
+// Route pour exam
+const examRoutes = require('./routes/exam');
+app.use('/', examRoutes);
+
 //  Connexion MySQL
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'MySQLroot0', // modifier si besoin
+//     database: 'projet_db'
+// })
+//  Connexion db avec clever cloud
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '', // modifier si besoin
-    database: 'projet_db'
+    host: 'b36d44aud3qfv13tgans-mysql.services.clever-cloud.com',
+    user: 'uecp2cnoj1yrcip2',
+    password: '2Vivu13qrAdHfY8Vb28S', // modifier si besoin
+    port: '3306',
+    database: 'b36d44aud3qfv13tgans'
 })
 db.connect((err) => {
     if (err) {

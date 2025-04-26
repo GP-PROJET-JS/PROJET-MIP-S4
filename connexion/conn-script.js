@@ -84,22 +84,36 @@ function seConnecter(event) {
     // Stocker le token dans localStorage
     localStorage.setItem("token", data.token)
     localStorage.setItem("usertype", data.usertype)
-    
+    localStorage.setItem("utilisateurConnecte", JSON.stringify({
+      id: data.id,
+      usertype: data.usertype
+    }))
     // Rediriger selon le type d'utilisateur
+    const msg = document.getElementById("success-message")
+    msg.innerHTML = "✅ Bienvenu ! Redirection en cours..."
+    msg.classList.add("show")
     setTimeout(() => {
       if (data.usertype === "etudiant") {
-        window.location.href = "../espaceEtd/espaceEtd.html"
-      } else {
-        window.location.href = "../espaceEns/espaceEns.html"
-      }
-    }, 500)
+            window.location.href = "../espaceEtd/espaceEtd.html" // !!!!!
+          } else {
+            window.location.href = "../espaceEns/Espace_Ens.html"
+          }
+    }, 2000)
+    //
+    // setTimeout(() => {
+    //   if (data.usertype === "etudiant") {
+    //     window.location.href = "../espaceEtd/espaceEtd.html" // !!!!!
+    //   } else {
+    //     window.location.href = "../espaceEns/Espace_Ens.html"
+    //   }
+    // }, 500)
   })
   // Traiter les Errors
   .catch(err => {
     const errMsg = document.querySelector("#error-message")
     errMsg.style.color = "red"
     errMsg.innerText = "email ou mot de passe incorrect !"
-    document.querySelectorAll("span").forEach((e)=> {
+    document.querySelectorAll("label span").forEach((e)=> {
       e.style.color = "red"
     })
   });
