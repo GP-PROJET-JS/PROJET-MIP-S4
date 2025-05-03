@@ -94,7 +94,7 @@ function seConnecter(event) {
     msg.classList.add("show")
     setTimeout(() => {
       if (data.usertype === "etudiant") {
-            window.location.href = "../espaceEtd/espaceEtd.html" // !!!!!
+            window.location.href = "../espaceEtd/Espace_Etd.html" // !!!!!
           } else {
             window.location.href = "../espaceEns/Espace_Ens.html"
           }

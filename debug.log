@@ -31,3 +31,11 @@
         Type d'utilisateur : enseignant
         Date : 25/04/2025 19:38:43
         ----------------------------
+        Nouvel utilisateur inscrit :
+        Nom : El bakhti
+        Email : ayman@gmail.com
+        Mot de passe (clair) : ayman1234
+        Mot de passe (haché) : $2b$10$BdM6Dmbzh.uvVLgZ01w9vujK2nncqIa7QJVypAdHWkVdzbn2RterS
+        Type d'utilisateur : etudiant
+        Date : 27/04/2025 16:29:28
+        ----------------------------

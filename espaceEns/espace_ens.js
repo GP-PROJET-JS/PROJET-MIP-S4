@@ -29,26 +29,20 @@ const createExamBtn = document.getElementById('create-exam')
 const tabButtons = document.querySelectorAll('.tab')
 const examDisplay = document.getElementById('exam-display')
 
-// form cree exam
-const form = document.getElementById('exam-form');
-// const exams = JSON.parse(localStorage.getItem('exams')) || [];
-let currentExam = {}
-
 const token = localStorage.getItem("token")
 if (!token) {
   alert("Vous devez vous connecter !");
   window.location.href = "../connexion/conn.html"
-  
 }
+
+// debut form cree exam
+const form = document.getElementById('exam-form');
+let currentExam = {}
+
 const decoded = JSON.parse(atob(token.split('.')[1]))
 const ensId = decoded.id
-// const utilisateur = JSON.parse(localStorage.getItem('utilisateurConnecte'))
-// if (!utilisateur || utilisateur.usertype !== 'enseignant') {
-//   alert("Vous devez vous connecter en tant qu'enseignant !");
-//   window.location.href = "../connexion/conn.html";
-// }
 
-// recuperation des donner directemant de db
+// recuperation des examens depuis la base de donnees
 let exams = [];
 fetch(`/examens/${ensId}`)
   .then(res => res.json())
@@ -60,7 +54,8 @@ fetch(`/examens/${ensId}`)
   .catch(err => {
     console.error("Erreur lors du chargement des examens:", err)
   })
-// 
+
+// soumission du formulaire
 form.onsubmit = (event) => {
   event.preventDefault()
   currentExam = {
@@ -70,10 +65,6 @@ form.onsubmit = (event) => {
     id: ensId
   }
 
-  // exams.push(currentExam);
-  // localStorage.setItem('exams', JSON.stringify(exams));
-  renderExamsByClass(currentExam.semestre)
-  // envoie au db
   fetch('/ajouter-examen', {
     method: 'POST',
     headers: {
@@ -83,19 +74,20 @@ form.onsubmit = (event) => {
   })
   .then(res => res.json())
   .then(data => {
-    window.location.reload()
-    alert(data.message)
+    currentExam.exam_lien = data.exam_lien;
+
+    // Stocker dans localStorage avant redirection
+    localStorage.setItem('selectedExam', JSON.stringify(currentExam));
+    
+    alert(data.message);
     window.location.href = 'espaceExam/espace_exam.html'
-    // currentExam.exam_lien = data.exam_lien;
-    // exams.push(currentExam);
-    // localStorage.setItem('exams', JSON.stringify(exams));
   })
   .catch(err => {
     console.error('Erreur envoi :', err)
   })
 }
 
-// creat ele card
+// afficher les examens selon le semestre
 function renderExamsByClass(level) {
   examDisplay.innerHTML = ''
   exams.filter(e => e.semestre === level).forEach(exam => {
@@ -111,51 +103,46 @@ function renderExamsByClass(level) {
         <div class="name" style="font-size: 16px;">
           <div style="cursor: text;margin-bottom: -14px;"> <span style="color:yellow;">🔗Lien:</span> ${exam.exam_lien || 'Lien non généré'}</div><br><br>
           <button class="btn-delete" data-id="${exam.exam_id}">Supprimer</button>
-          </div>
+        </div>
       </div>`
     card.onclick = () => {
       localStorage.setItem('selectedExam', JSON.stringify(exam))
       window.location.href = 'espaceExam/espace_exam.html'
     }
-    // supprimer exam card de db
+
+    // supprimer examen
     const deleteBtn = card.querySelector('.btn-delete')
     deleteBtn.onclick = (e) => {
       e.stopPropagation()
       if (!confirm("vous etes sure de supprimer ce exam ?")) return
       const examId = deleteBtn.dataset.id
-      // const index = exams.findIndex(ex => ex.exam_lien === examLien);
-      // if (index !== -1) {
-      //   // supprimer de localStorage
-      //   exams.splice(index, 1);
-      //   localStorage.setItem('exams', JSON.stringify(exams));
-      //   renderExamsByClass(level);
-      // }
-      // supprimer de db
+
       fetch(`/supprimer-examen/${examId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
         },
-        })
-        .then(res => res.text())
-        .then(msg => {
-          console.log(msg)
-          return fetch(`/examens/${ensId.id}`)
-        })
-        .then(res => res.json())
-        .then(data => {
-          exams = data
-          renderExamsByClass(level)
-        })
-        .catch(err => {
-          console.error("Erreur lors de la suppression du serveur:", err)
-        })
-      }
+      })
+      .then(res => res.text())
+      .then(msg => {
+        console.log(msg)
+        return fetch(`/examens/${ensId}`)
+      })
+      .then(res => res.json())
+      .then(data => {
+        exams = data
+        renderExamsByClass(level)
+      })
+      .catch(err => {
+        console.error("Erreur lors de la suppression du serveur:", err)
+      })
+    }
+
     examDisplay.appendChild(card)
   })
 }
 
-// bouton semestre
+// changer de semestre
 tabButtons.forEach((btn) => {
   btn.onclick = () => {
     tabButtons.forEach(b => b.classList.remove('active'))
