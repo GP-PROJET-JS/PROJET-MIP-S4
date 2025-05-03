@@ -22,8 +22,8 @@ et aux étudiants de s’inscrire et de les passer à distance.
 - [x] Création de l’organisation et du dépôt GitHub
 - [x] Formulaire d’inscription
 - [x] Formulaire de connexion
-- [ ] Interface enseignant : création examen
-- [ ] Interface enseignant : ajout questions
+- [x] Interface enseignant : création examen
+- [x] Interface enseignant : ajout questions
 - [ ] Interface étudiant : accès, géolocalisation, réponses
 - [ ] Calcul du score et affichage
 - [ ] Vidéo de présentation
