@@ -54,7 +54,7 @@ router.delete('/supprimer-examen/:exam_id', (req, res) => {
   })
 })
 
-// Route pour jouter les questions
+// Route pour ajouter les questions
 router.post('/ajouter-question', (req, res) => {
   const db = req.app.get('db');
   const { questions, exam_lien } = req.body;
@@ -97,7 +97,7 @@ router.post('/ajouter-question', (req, res) => {
         console.error('Erreur insertion questions:', err);
         return res.status(500).send('Erreur serveur');
       }
-      res.json({ message: "Questions enregistrées avec succès" });
+      res.json({ message: "Questions enregistrees avec succes" });
     });
   });
 });
@@ -134,7 +134,7 @@ router.post('/submit/:exam_lien', (req, res) => {
     JOIN examens e ON q.exam_lien = e.exam_lien
     WHERE e.exam_lien = ?
   `
-
+  
   db.query(sql, [exam_lien], (err, results) => {
     if (err) {
       console.error('Erreur soumission:', err)
@@ -150,6 +150,53 @@ router.post('/submit/:exam_lien', (req, res) => {
     res.json({ score })
   })
 })
+
+// -------------------------------
+// const app = express();
+// app.get('/get-questions', (req, res) => {
+//   const examLien = req.query.exam_lien;
+//   if (!examLien) return res.status(400).json({ error: "exam_lien manquant" });
+
+//   db.query('SELECT * FROM questions WHERE exam_lien = ?', [examLien], (err, results) => {
+//     if (err) return res.status(500).json({ error: "Erreur serveur" });
+//     res.json({ questions: results });
+//   });
+// });
+// -------------------------------
+
+// Route pour recuperer les questions par exam_lien
+router.get('/get-questions', (req, res) => {
+  const db = req.app.get('db');
+  const { exam_lien } = req.query;
+
+  const sql = `SELECT * FROM questions WHERE exam_lien = ?`;
+  db.query(sql, [exam_lien], (err, results) => {
+    if (err) {
+      console.error('Erreur lors de la récupération des questions:', err);
+      return res.status(500).send('Erreur serveur');
+    }
+    res.json(results);
+  });
+});
+
+// Supprimer toutes les questions d'un examen donne
+router.post('/supprimer-questions', async (req, res) => {
+  const { exam_lien } = req.body;
+
+  if (!exam_lien) {
+    return res.status(400).json({ error: "exam_lien manquant" });
+  }
+
+  try {
+    const sql = "DELETE FROM questions WHERE exam_lien = ?";
+    const db = req.app.get('db');
+    await db.promise().query(sql, [exam_lien]);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Erreur lors de la suppression des questions:", err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
 
 module.exports = router;
 

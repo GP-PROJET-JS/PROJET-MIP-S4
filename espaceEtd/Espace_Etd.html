@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>plateforme-examen</title>
-  <link rel="stylesheet" href="espace_ens.css"/>
+  <link rel="stylesheet" href="espace_etd.css">
 </head>
 <body>
   <header>
@@ -35,65 +35,14 @@
   </header>
   <div id="sticky-barre"></div>
   <main>
-      <div style="display: block;height: 50px;"></div>
-      <form id="exam-form" method="POST" >
-        <input type="text" id="exam-name" name="examNom" placeholder="Nom de l'examen" required />
-        <textarea id="exam-desc" name="examDesc" placeholder="Description" ></textarea>
-        <!-- <input type="text" id="exam-desc" placeholder="Description"/> -->
-        <select id="semestre" name="semestre" required>
-          <option value="" disabled selected>Choisir la semestre</option>
-          <option value="S1">S1</option>
-          <option value="S2">S2</option>
-          <option value="S3">S3</option>
-          <option value="S4">S4</option>
-          <option value="S5">S5</option>
-          <option value="S6">S6</option>
-        </select>
-        <button id="create-exam" type="submit" class="cree-btn">Cree un nouveau examen</button>
-      </form>
-    <!-- </form>  -->
-  
-    <!-- Group Button -->
-    <div id="class-tabs">
-      <div class="radio-inputs">
-        <label class="radio">
-          <input type="radio" name="radio" checked="" />
-          <span class="name tab" data-class="S1">S1</span>
-        </label>
-        <label class="radio">
-          <input type="radio" name="radio" />
-          <span class="name tab" data-class="S2">S2</span>
-        </label>
-        <label class="radio">
-          <input type="radio" name="radio" />
-          <span class="name tab" data-class="S3">S3</span>
-        </label>
-        <label class="radio">
-          <input type="radio" name="radio" />
-          <span class="name tab" data-class="S4">S4</span>
-        </label>
-        <label class="radio">
-          <input type="radio" name="radio" />
-          <span class="name tab" data-class="S5">S5</span>
-        </label>
-        <label class="radio">
-          <input type="radio" name="radio" />
-          <span class="name tab" data-class="S6">S6</span>
-        </label>
-      </div>
-    </div>
-    <!-- end Group Button -->
-    <!-- exam display -->
-    <div class="container">
-      <button id="prev-btn">‹</button>
-      <section id="exam-display"></section>
-      <button id="next-btn">›</button>
-    </div>
-    <!-- end exam display -->
+    <h1> Entrer dans votre examen </h1>
+    <input type="text" id="examLien" placeholder="Entrez votre lien d'examen ici...">
+    <br>
+    <button onclick="entrerExam()">Entrer à l'examen</button>
   </main>
   <footer>
 
   </footer>
 </body>
-  <script src="espace_ens.js"></script>
+  <script src="espace_etd.js"></script>
 </html>
