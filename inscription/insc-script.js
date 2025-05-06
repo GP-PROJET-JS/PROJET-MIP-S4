@@ -24,6 +24,7 @@ const Etudiant = document.querySelector(".Etudiant")
 const Enseignant = document.querySelector(".Enseignant")
 const submit = document.querySelector(".submit")
 Etudiant.onclick = function () {
+    localStorage.setItem("usertype", "etudiant");
     Etudiant.classList.add('Etudiant_activer')
     Enseignant.classList.remove('Enseignant_activer')
     msj = document.querySelector(".message").innerHTML = "S\'inscrire Comme Etudiant :"
@@ -39,6 +40,7 @@ Etudiant.onclick = function () {
     })
 }
 Enseignant.onclick = function () {
+    localStorage.setItem("usertype", "enseignant");
     Enseignant.classList.add('Enseignant_activer')
     Etudiant.classList.remove('Etudiant_activer')
     msj = document.querySelector(".message").innerHTML = "S\'inscrire Comme Enseignant :"
@@ -54,6 +56,13 @@ Enseignant.onclick = function () {
     })
 }
 
+// garder le type selectionner dans localstorage
+if(localStorage.getItem("usertype") === "etudinat"){
+    Etudiant.onclick();
+}else if (localStorage.getItem("usertype") === "enseignant"){
+    Enseignant.onclick();
+}
+  
 // verification form
 function validerFormulaire(event) {
     let estValide = true

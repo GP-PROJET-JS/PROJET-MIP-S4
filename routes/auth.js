@@ -71,7 +71,10 @@ router.post('/connexion', (req, res) => {
     if (!valid) return res.status(401).send("Mot de passe incorrect")
     // Utilisateur trouvé → créer un token
     const token = jwt.sign(
-      { id: user.id, email: user.email, usertype },
+      { id: user.id, 
+        fullname: `${user.nom} ${user.prenom}`,
+        email: user.email, 
+        usertype },
       SECRET_KEY,
       { expiresIn: '2h' }
     )
@@ -82,7 +85,7 @@ router.post('/connexion', (req, res) => {
     console.log("---------------------------")
 
     // Renvoyer token et type utilisateur
-    res.json({ token, usertype, id: user.id, email: user.email })
+    res.json({ token, usertype, id: user.id, email: user.email , fullname: `${user.nom} ${user.prenom}` })
   })
 
 })

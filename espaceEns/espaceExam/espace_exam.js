@@ -258,9 +258,27 @@ document.getElementById('terminer').addEventListener('click', async () => {
     }
 
     const data = await response.json();
-    alert('Examen bien enregistré !');
-    localStorage.removeItem('questions');
-    window.location.href = '../Espace_Ens.html';
+    // alert('Examen bien enregistré !');
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: data.message
+    });
+    setTimeout(() => {
+      localStorage.removeItem('questions');
+      window.location.href = '../Espace_Ens.html';
+    }, 1000);
+    // window.location.href = '../Espace_Ens.html';
 
   } catch (error) {
     console.error('Erreur :', error);

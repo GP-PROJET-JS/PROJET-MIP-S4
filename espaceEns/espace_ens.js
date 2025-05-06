@@ -42,6 +42,9 @@ let currentExam = {}
 const decoded = JSON.parse(atob(token.split('.')[1]))
 const ensId = decoded.id
 
+// recupere userName
+document.querySelector("#userName").innerHTML = `${decoded.fullname}`
+
 // recuperation des examens depuis la base de donnees
 let exams = [];
 fetch(`/examens/${ensId}`)

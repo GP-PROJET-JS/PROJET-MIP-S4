@@ -24,6 +24,7 @@ overlay.addEventListener("click", () => {
 const Etudiant = document.querySelector(".Etudiant")
 const Enseignant = document.querySelector(".Enseignant")
 Etudiant.onclick = function () {
+  localStorage.setItem("usertype", "etudiant");
     Etudiant.classList.add('Etudiant_activer')
     Enseignant.classList.remove('Enseignant_activer')
     msj = document.querySelector(".message").innerHTML = "Se Connecter Comme Etudiant :"
@@ -40,6 +41,7 @@ Etudiant.onclick = function () {
     })
 }
 Enseignant.onclick = function () {
+  localStorage.setItem("usertype", "enseignant");
     Enseignant.classList.add('Enseignant_activer')
     Etudiant.classList.remove('Etudiant_activer')
     msj = document.querySelector(".message").innerHTML = "Se Connecter Comme Enseignant :"
@@ -54,6 +56,13 @@ Enseignant.onclick = function () {
     submit.addEventListener("mouseout", () => {
         submit.style.backgroundColor = "brown"
     });  
+}
+
+// garder le type selectionner dans localstorage
+if(localStorage.getItem("usertype") === "etudinat"){
+  Etudiant.onclick();
+}else if (localStorage.getItem("usertype") === "enseignant"){
+  Enseignant.onclick();
 }
 
 // verification connection

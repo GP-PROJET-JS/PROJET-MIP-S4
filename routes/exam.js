@@ -8,7 +8,7 @@ router.post('/ajouter-examen', (req, res) => {
   const { name, description, semestre, id } = req.body
   
   // generer un lien
-  const exam_lien = 'exam-' + crypto.randomBytes(4).toString('hex')
+  const exam_lien = 'platexm-exam-' + crypto.randomBytes(4).toString('hex') + ".tb";
 
   const sql = `INSERT INTO examens (exam_nom, exam_desc, semestre, id, exam_lien) 
                VALUES (?, ?, ?, ?, ?)`

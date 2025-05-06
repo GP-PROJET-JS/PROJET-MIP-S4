@@ -35,6 +35,12 @@ if (!token || usertype !== "etudiant") {
 }
 //...............................................
 //  
+const decoded = JSON.parse(atob(token.split('.')[1]));
+
+// recupere userName
+document.querySelector("#userName").innerHTML = `${decoded.fullname}`;
+
+// 
 /*function entrerExam() {
 const lien = document.getElementById('examLien').value.trim();
 if (!lien) {
