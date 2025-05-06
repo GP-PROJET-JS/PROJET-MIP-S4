@@ -329,8 +329,8 @@ form button{
   justify-self: center; 
   /* justify-content: center; */
   align-items: center;
-  gap: 15px; 
-  width: 449px;
+  gap: 20px; 
+  width: 460px;
   height: 320px;
   padding: 20px;
   overflow-x: auto;
@@ -340,7 +340,7 @@ form button{
 /* fleches pour passe de card */
 .container {
   position: relative;
-  width: 510px;
+  width: 526px;
   padding: 15px;
   margin: auto;
   /* overflow: hidden; */
@@ -379,7 +379,7 @@ form button{
 
 .infotop {
   text-align: center;
-  font-size: 20px;
+  font-size: 19px;
   position: absolute;
   top: 5.6em;
   left: 0;

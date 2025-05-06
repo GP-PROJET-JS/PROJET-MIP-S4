@@ -1,4 +1,36 @@
-let questions = JSON.parse(localStorage.getItem('questions')) || [];
+
+let questions = [];
+
+// recuperer exam_lien 
+const urlParams = new URLSearchParams(window.location.search);
+const exam_lien = urlParams.get('exam_lien');
+
+
+function chargerQuestions() {
+
+  fetch(`/get-questions?exam_lien=${exam_lien}`)
+    .then(res => res.json())
+    .then(data => {
+      questions = data.map(q => ({
+        id: q.id,
+        question: q.text || '',             
+        duree: q.duree || 0,
+        note: q.note || 0,
+        type: q.type || 'qcm',
+        choices: [q.option1, q.option2, q.option3, q.option4],
+        correct: JSON.parse(q.correct_options || '[]'),         
+        correct_options: q.correct_options || '[]',            
+        reponce: q.reponce || '',
+        tolerance: q.tolerance || 0,
+        image: q.image_url || '',
+        video: q.video_url || '',
+        audio: q.audio_url || ''
+      }));
+      renderQuestions();
+    })
+    .catch(err => console.error("Erreur chargement des questions:", err));
+}
+
 let currentQuestionType = 'qcm';
 
 // Sauvegarde dans le localStorage
@@ -33,7 +65,7 @@ function renderQuestions() {
 
       <div class="mb-2">
         <button class="btn ${q.type === 'qcm' ? 'btn-success' : 'btn-outline-success'} btn-sm me-2" onclick="setQuestionType(${q.id}, 'qcm')">QCM</button>
-        <button class="btn ${q.type === 'directe' ? 'btn-danger' : 'btn-outline-danger'} btn-sm" onclick="setQuestionType(${q.id}, 'directe')">Question Directe</button>
+        <button class="btn ${q.type === 'directe' ? 'btn-success' : 'btn-outline-success'} btn-sm" onclick="setQuestionType(${q.id}, 'directe')">Question Directe</button>
       </div>
 
       ${q.type === 'qcm' ? getQcmInputs(q) : getreponceInput(q)}
@@ -133,8 +165,8 @@ function ajouterQuestion(type) {
   questions.push({
     id, 
     question: '', 
-    duree: '', 
-    note: '',
+    duree: '30', 
+    note: '10',
     type, 
     choices: ['', '', '', ''],
     correct: [], 
@@ -172,24 +204,14 @@ function uploadFile(id, type) {
   input.addEventListener('change', function (e) {
     const file = e.target.files[0];
     if (file) {
-      const formData = new FormData();
-      formData.append('media', file);
-      formData.append('type', type);
+      const fileURL = URL.createObjectURL(file); // cree un lien tmp
 
-      fetch('/upload-media', {
-        method: 'POST',
-        body: formData
-      })
-      .then(res => res.json())
-      .then(data => {
-        const q = questions.find(q => q.id === id);
-        if (q) {
-          q[type] = data.url;  // URL retourné depuis le backend
-          saveToLocalStorage();
-          renderQuestions();
-        }
-      })
-      .catch(err => console.error("Erreur upload:", err));
+      const q = questions.find(q => q.id === id);
+      if (q) {
+        q[type] = fileURL;
+        saveToLocalStorage();
+        renderQuestions();
+      }
     }
   });
 
@@ -198,44 +220,56 @@ function uploadFile(id, type) {
 // -----------------------------------------------------------------------
 
 // Terminer & envoyer les questions
-document.getElementById('terminer').addEventListener('click', () => {
+document.getElementById('terminer').addEventListener('click', async () => {
   const selectedExam = JSON.parse(localStorage.getItem('selectedExam'));
   const exam_lien = selectedExam ? selectedExam.exam_lien : null;
 
   if (!exam_lien) {
-    alert("exam lien n'existe pas");
+    alert("Le lien de l'examen est manquant.");
     return;
   }
-
-  fetch('/ajouter-question', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      questions: questions.map(q => ({
-        ...q,
-        correct_options: JSON.stringify(q.correct)
-      })),
-      exam_lien: exam_lien
-    })
-  })
-    .then(response => {
-      if (!response.ok) throw new Error("Erreur serveur");
-      return response.json();
-    })
-    .then(data => {
-      alert('Examen bien enregistré');
-      localStorage.removeItem('questions');
-      window.location.href = '../Espace_Ens.html';
-    })
-    .catch(error => {
-      console.error('Erreur:', error);
+  try {
+    // Supprimer les anciennes questions
+    const deleteResponse = await fetch('/supprimer-questions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ exam_lien })
     });
-  
+
+    if (!deleteResponse.ok) {
+      throw new Error("Échec lors de la suppression des anciennes questions.");
+    }
+
+    // Enregistrer les nouvelles questions
+    const response = await fetch('/ajouter-question', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        questions: questions.map(q => ({
+          ...q,
+          correct_options: JSON.stringify(q.correct)
+        })),
+        exam_lien
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error("Erreur lors de l'enregistrement des questions.");
+    }
+
+    const data = await response.json();
+    alert('Examen bien enregistré !');
+    localStorage.removeItem('questions');
+    window.location.href = '../Espace_Ens.html';
+
+  } catch (error) {
+    console.error('Erreur :', error);
+    alert("Une erreur s'est produite. Voir la console pour plus de détails.");
+  }
 });
 
 // Boutons
 document.getElementById('ajouterQuestion').addEventListener('click', () => ajouterQuestion(currentQuestionType));
 document.getElementById('supprimerTous').addEventListener('click', supprimerTous);
 
-// Affichage initial
-renderQuestions();
+chargerQuestions();

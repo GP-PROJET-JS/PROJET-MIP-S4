@@ -79,8 +79,26 @@ form.onsubmit = (event) => {
     // Stocker dans localStorage avant redirection
     localStorage.setItem('selectedExam', JSON.stringify(currentExam));
     
-    alert(data.message);
-    window.location.href = 'espaceExam/espace_exam.html'
+    // alert(data.message);
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: data.message
+    });
+    setTimeout(() => {
+      window.location.href = 'espaceExam/espace_exam.html'
+    }, 2000);
+    // window.location.href = 'espaceExam/espace_exam.html'
   })
   .catch(err => {
     console.error('Erreur envoi :', err)
@@ -91,8 +109,8 @@ form.onsubmit = (event) => {
 function renderExamsByClass(level) {
   examDisplay.innerHTML = ''
   exams.filter(e => e.semestre === level).forEach(exam => {
-    const card = document.createElement('div')
-    card.className = 'exam-card'
+    const card = document.createElement('div');
+    card.className = 'exam-card';
     card.innerHTML = `
       <div class="wave"></div>
       <div class="wave"></div>
@@ -100,41 +118,101 @@ function renderExamsByClass(level) {
       <div class="infotop">${exam.exam_nom}<br>
         <div class="name">${exam.exam_desc || `<br>`}</div><br>
         <div class="name">${exam.semestre}</div><br>
-        <div class="name" style="font-size: 16px;">
-          <div style="cursor: text;margin-bottom: -14px;"> <span style="color:yellow;">🔗Lien:</span> ${exam.exam_lien || 'Lien non généré'}</div><br><br>
+        <div class="lienDiv" class="name" style="font-size: 16px;">
+          <div style="cursor: default; margin-bottom: -34px; padding: 10px;">
+            <span style="color:yellow;">🔗</span> 
+            <span class="lienText">${exam.exam_lien || 'Lien non genere'}</span>
+            <button class="copyBtn" style="background:none; border:none; cursor:pointer;" title="Copier">📝</button>
+          </div><br><br>
           <button class="btn-delete" data-id="${exam.exam_id}">Supprimer</button>
         </div>
-      </div>`
-    card.onclick = () => {
-      localStorage.setItem('selectedExam', JSON.stringify(exam))
-      window.location.href = 'espaceExam/espace_exam.html'
+      </div>
+    `;
+
+    card.addEventListener("click", (e) => {
+      localStorage.setItem('selectedExam', JSON.stringify(exam));
+      window.location.href = `espaceExam/espace_exam.html?exam_lien=${exam.exam_lien}`;
+    });
+
+    const lienDiv = card.querySelector(".lienDiv");
+    lienDiv.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+    const copyBtn = lienDiv.querySelector(".copyBtn");
+    copyBtn.addEventListener("click", (e) => {
+      const lienText = lienDiv.querySelector(".lienText").innerText.trim();
+      navigator.clipboard.writeText(lienText).then(() => {
+        showCopiedMessage(copyBtn);
+      }).catch(err => {
+        console.error('Erreur lors de la copie:', err);
+      });
+    });
+
+    function showCopiedMessage(element) {
+      const message = document.createElement('div');
+      message.textContent = 'Lien copié!';
+      message.style.position = 'fixed';
+      message.style.background = '#4caf50';
+      message.style.color = 'white';
+      message.style.padding = '5px 10px';
+      message.style.borderRadius = '10px';
+      message.style.top = '20px';
+      message.style.right = '20px';
+      message.style.zIndex = 1000;
+      message.style.fontSize = '14px';
+      message.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      
+      document.body.appendChild(message);
+
+      setTimeout(() => {
+        message.remove();
+      }, 2000);
     }
 
     // supprimer examen
     const deleteBtn = card.querySelector('.btn-delete')
     deleteBtn.onclick = (e) => {
       e.stopPropagation()
-      if (!confirm("vous etes sure de supprimer ce exam ?")) return
-      const examId = deleteBtn.dataset.id
+      // if (!confirm("vous etes sure de supprimer ce exam ?")) return
 
-      fetch(`/supprimer-examen/${examId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      })
-      .then(res => res.text())
-      .then(msg => {
-        console.log(msg)
-        return fetch(`/examens/${ensId}`)
-      })
-      .then(res => res.json())
-      .then(data => {
-        exams = data
-        renderExamsByClass(level)
-      })
-      .catch(err => {
-        console.error("Erreur lors de la suppression du serveur:", err)
+      Swal.fire({
+        title: "<span style=\"font-family: Arial;\">vous etes sure de supprimer ce exam ?</span>",
+        text: "",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "oui, supprimer",
+        cancelButtonText: "annuler"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const examId = deleteBtn.dataset.id;
+    
+          fetch(`/supprimer-examen/${examId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          })
+          .then(res => res.text())
+          .then(msg => {
+            console.log(msg);
+            Swal.fire({
+              title: "exam bien supprime",
+              text: "",
+              icon: "success"
+            });
+            return fetch(`/examens/${ensId}`)
+          })
+          .then(res => res.json())
+          .then(data => {
+            exams = data
+            renderExamsByClass(level)
+          })
+          .catch(err => {
+            console.error("Erreur lors de la suppression du serveur:", err)
+          })
+        } else return;
       })
     }
 
@@ -159,14 +237,14 @@ let scrollPosition = 0
 const prevBtn = document.getElementById('prev-btn')
 const nextBtn = document.getElementById('next-btn')
 
-const cardWidth = 237
+const cardWidth = 220
 prevBtn.onclick = () => {
-  scrollPosition -= cardWidth * 1
+  scrollPosition -= cardWidth * 1 + 20
   if (scrollPosition < 0) scrollPosition = 0
   examDisplay.scrollTo({ left: scrollPosition, behavior: 'smooth' })
 }
 
 nextBtn.onclick = () => {
-  scrollPosition += cardWidth * 1
+  scrollPosition += cardWidth * 1 + 20
   examDisplay.scrollTo({ left: scrollPosition, behavior: 'smooth' })
 }
