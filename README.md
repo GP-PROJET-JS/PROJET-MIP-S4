@@ -26,7 +26,7 @@ et aux étudiants de s’inscrire et de les passer à distance.
 - [x] Interface enseignant : ajout questions
 - [x] Interface étudiant : accès, géolocalisation, réponses
 - [x] Calcul du score et affichage
-- [ ] Vidéo de présentation
+- [x] Vidéo de présentation
 
 ---
 
